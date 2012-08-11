@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2008 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+  
+          http://www.apache.org/licenses/LICENSE-2.0
+  
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+        android:title="@string/development_settings_title">
+        
+    <CheckBoxPreference 
+        android:key="enable_adb" 
+        android:title="@string/enable_adb" 
+        android:summary="@string/enable_adb_summary"/>
+
+    <CheckBoxPreference
+	android:key="adb_over_network"
+        android:title="@string/adb_over_network"
+        android:summary="@string/adb_over_network_summary"
+        android:dependency="enable_adb" />
+	
+    <CheckBoxPreference
+        android:key="adb_notify"
+        android:title="@string/adb_notify"
+        android:summary="@string/adb_notify_summary"
+        android:dependency="enable_adb" />
+
+    <ListPreference
+        android:key="root_access"
+        android:title="@string/root_access"
+        android:persistent="false"
+        android:entries="@array/root_access_entries"
+        android:entryValues="@array/root_access_values" />
+
+    <CheckBoxPreference 
+        android:key="keep_screen_on" 
+        android:title="@string/keep_screen_on" 
+        android:summary="@string/keep_screen_on_summary"/>
+
+    <CheckBoxPreference 
+        android:key="allow_mock_location" 
+        android:title="@string/allow_mock_location" 
+        android:summary="@string/allow_mock_location_summary"/>
+
+    <CheckBoxPreference
+        android:key="mount_sd_ext"
+        android:title="@string/mount_sd_ext"
+        android:summary="@string/mount_sd_ext_summary" />
+
+    <CheckBoxPreference
+        android:key="data_bind_mount"
+        android:title="@string/data_bind_mount"
+        android:summary="@string/data_bind_mount_summary" />
+
+    <CheckBoxPreference
+        android:key="down_cache_mount"
+        android:title="@string/down_cache_mount"
+        android:summary="@string/down_cache_mount_summary" />
+
+    <CheckBoxPreference
+        android:key="kill_app_longpress_back"
+        android:title="@string/kill_app_longpress_back"
+        android:summary="@string/kill_app_longpress_back_summary" />
+
+        <ListPreference android:key="pref_killtimeout"
+            android:dependency="kill_app_longpress_back"
+            android:dialogTitle="@string/pref_killtimeout_title"
+            android:title="@string/pref_killtimeout_title" android:summary="@string/pref_killtimeout_summary"
+            android:entries="@array/entries_killtimeout"
+            android:entryValues="@array/values_killtimeout" />
+
+    <Preference
+        android:key="verifier_device_identifier"
+        style="?android:attr/preferenceInformationStyle"
+        android:title="@string/verifier_device_identifier"
+        android:summary="@string/verifier_device_identifier_not_available"
+        android:persistent="false" />
+
+    <com.android.settings.HostnamePreference
+        android:key="device_hostname"
+        android:title="@string/device_hostname"
+        android:dialogTitle="@string/device_hostname"
+        android:positiveButtonText="@string/hostname_save"
+        android:negativeButtonText="@string/hostname_cancel"
+        android:selectAllOnFocus="true"
+        android:imeOptions="actionDone"
+        android:inputType="text"
+        android:persistent="false" />
+
+</PreferenceScreen>
