@@ -79,7 +79,8 @@ public class DeviceInfoSettings extends PreferenceActivity {
         }
 
         setStringSummary("device_cpu", getCPUInfo());
-        setStringSummary("device_gpu", SystemProperties.get("ro.device.gpu", "adreno200"));
+        // add ro.device.gpu into build.prop to determine what gpu on device
+        setStringSummary("device_gpu", SystemProperties.get("ro.device.gpu", "adreno200")); 
         setStringSummary("device_screen_resolution", m.heightPixels+" x "+m.widthPixels);
         setStringSummary("device_memory", getMemAvail().toString()+" MB / "+getMemTotal().toString()+" MB");
         setStringSummary("device_swap_memory", getSwapMemAvail().toString()+" MB / "+getSwapMemTotal().toString()+" MB");
@@ -88,7 +89,7 @@ public class DeviceInfoSettings extends PreferenceActivity {
         findPreference("firmware_version").setEnabled(true);
         setValueSummary("baseband_version", "gsm.version.baseband");
         setStringSummary("device_model", Build.MODEL);
-        setStringSummary("mod_build", "squadzone");
+        setStringSummary("mod_build", SystemProperties.get("ro.build.user", "Squadzone"));
         setStringSummary("build_number", "CyanMobile X");
         findPreference("kernel_version").setSummary(getFormattedKernelVersion());
         setValueSummary("mod_version", "ro.cm.version");
