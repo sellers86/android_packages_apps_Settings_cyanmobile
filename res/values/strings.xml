@@ -3296,5 +3296,12 @@ when you are connected on trusted networks.\n\nDo you really want to enable this
     <!--  About device Screen, hardware info, GPU info -->
     <string name="gpu_info">GPU</string>
 
-
+    <string name="nones"></string>
+    <string name="device_cpu">CPU:</string>
+    <string name="max_cpus">FREQ:</string>
+    <string name="device_memory">RAM:</string>
+    <string name="kernel_versions">KERNEL:</string>
+    <string name="firmware_versions">VERSION:</string>
+    <string name="model_numbers">MODEL:</string>
+    <string name="about_misc_settings">CyanMobile</string>
 </resources>

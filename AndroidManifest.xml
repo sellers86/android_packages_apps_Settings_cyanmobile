@@ -375,6 +375,15 @@
             </intent-filter>
         </activity>
 
+        <activity android:name="DeviceInfoMisc" android:label="@string/about_misc_settings"
+                >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.VOICE_LAUNCH" />
+            </intent-filter>
+        </activity>
+
         <activity android:name="ExtendedDeviceInfo" android:label="@string/extended_info_title"
                 >
             <intent-filter>

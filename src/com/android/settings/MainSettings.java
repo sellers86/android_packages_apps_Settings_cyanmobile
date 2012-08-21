@@ -114,6 +114,9 @@ public class MainSettings extends TabActivity {
 
 		intent = new Intent().setClass(MainSettings.this, DeviceInfoSettings.class);
 		setupTab(new TextView(this), getString(R.string.about_settings), intent);
+
+		intent = new Intent().setClass(MainSettings.this, DeviceInfoMisc.class);
+		setupTab(new TextView(this), getString(R.string.about_misc_settings), intent);
     }
 
 	private void setupTab(final View view, final String tag, final Intent myIntent) {
