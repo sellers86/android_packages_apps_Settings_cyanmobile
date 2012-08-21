@@ -79,7 +79,7 @@ public class ProfileConfig extends PreferenceActivity implements OnPreferenceCha
                 new ConnectionItem(ConnectionSettings.PROFILE_CONNECTION_GPS, getString(R.string.toggleGPS)),
                 new ConnectionItem(ConnectionSettings.PROFILE_CONNECTION_WIFI, getString(R.string.toggleWifi)),
                 new ConnectionItem(ConnectionSettings.PROFILE_CONNECTION_WIFIAP, getString(R.string.toggleWifiAp))
-                //new ConnectionItem(ConnectivityManager.TYPE_WIMAX, getString(R.string.toggleWimax))
+                new ConnectionItem(ConnectionSettings.PROFILE_CONNECTION_AIRPLANE, getString(R.string.toggleAirplane))
         };
 
         addPreferencesFromResource(R.xml.profile_config);
