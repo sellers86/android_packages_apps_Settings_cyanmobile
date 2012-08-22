@@ -142,6 +142,8 @@ public class BrightnessPreference extends SeekBarPreference implements
     private void setMode(int mode) {
         if (mode == Settings.System.SCREEN_BRIGHTNESS_MODE_AUTOMATIC) {
             mSeekBar.setVisibility(View.GONE);
+            Settings.System.putInt(getContext().getContentResolver(),
+                Settings.System.STATUS_BAR_BRIGHTNESS_TOGGLE, 1);
         } else {
             mSeekBar.setVisibility(View.VISIBLE);
         }
