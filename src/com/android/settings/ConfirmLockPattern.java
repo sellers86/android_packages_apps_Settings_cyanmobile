@@ -81,6 +81,7 @@ public class ConfirmLockPattern extends Activity {
         super.onCreate(savedInstanceState);
 
         mLockPatternUtils = new LockPatternUtils(this);
+        mLockPatternUtils.updateLockPatternSize();
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.confirm_lock_pattern);
@@ -105,6 +106,7 @@ public class ConfirmLockPattern extends Activity {
         }
 
         mLockPatternView.setTactileFeedbackEnabled(mLockPatternUtils.isTactileFeedbackEnabled());
+        mLockPatternView.setLockPatternSize(mLockPatternUtils.getLockPatternSize());
         mLockPatternView.setOnPatternListener(mConfirmExistingLockPatternListener);
         updateStage(Stage.NeedToUnlock);
 
@@ -222,6 +224,7 @@ public class ConfirmLockPattern extends Activity {
         }
 
         public void onPatternDetected(List<LockPatternView.Cell> pattern) {
+            mLockPatternView.setLockPatternSize(mLockPatternUtils.getLockPatternSize());
             if (mLockPatternUtils.checkPattern(pattern)) {
                 setResult(RESULT_OK);
                 finish();

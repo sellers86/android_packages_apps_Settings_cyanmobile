@@ -3296,6 +3296,12 @@ when you are connected on trusted networks.\n\nDo you really want to enable this
     <!--  About device Screen, hardware info, GPU info -->
     <string name="gpu_info">GPU</string>
 
+    <!-- Sizes for pattern lockscreen -->
+    <string name="lock_pattern_size_3">3x3</string>
+    <string name="lock_pattern_size_4">4x4</string>
+    <string name="lock_pattern_size_5">5x5</string>
+    <string name="lock_pattern_size_6">6x6</string>
+
     <string name="nones"></string>
     <string name="device_cpu">CPU:</string>
     <string name="max_cpus">FREQ:</string>

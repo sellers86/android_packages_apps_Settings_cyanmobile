@@ -82,9 +82,15 @@
 
    <PreferenceCategory android:title="@string/settings_ics_personal" />
 
-        <!-- Data Sync. The settings activity will ensure this is resolved to an
-             activity on the system image, otherwise it will remove this
-             preference. -->
+        <com.android.settings.IconPreferenceScreen
+            settings:icon="@drawable/ic_settings_security"
+            android:title="@string/security_settings_title"
+            android:key="security_settings">
+            <intent
+                android:action="android.intent.action.MAIN"
+                android:targetPackage="com.android.settings"
+                android:targetClass="com.android.settings.SecuritySettings" />
+        </com.android.settings.IconPreferenceScreen>
 
         <com.android.settings.IconPreferenceScreen
             settings:icon="@drawable/ic_settings_sync"

@@ -73,6 +73,7 @@ public class ChooseLockPattern extends Activity implements View.OnClickListener{
     private TextView mFooterLeftButton;
     private TextView mFooterRightButton;
     protected List<LockPatternView.Cell> mChosenPattern = null;
+    private int PATTERN_SIZE = 3;
 
     /**
      * The patten used during the help screen to show how to draw a pattern.
@@ -269,6 +270,9 @@ public class ChooseLockPattern extends Activity implements View.OnClickListener{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        PATTERN_SIZE = getIntent().getIntExtra("pattern_size", 3);
+
         mChooseLockSettingsHelper = new ChooseLockSettingsHelper(this);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
@@ -320,7 +324,7 @@ public class ChooseLockPattern extends Activity implements View.OnClickListener{
         mLockPatternView.setOnPatternListener(mChooseNewLockPatternListener);
         mLockPatternView.setTactileFeedbackEnabled(
                 mChooseLockSettingsHelper.utils().isTactileFeedbackEnabled());
-
+        mLockPatternView.setLockPatternSize(PATTERN_SIZE);
         mFooterText = (TextView) findViewById(R.id.footerText);
 
         mFooterLeftButton = (TextView) findViewById(R.id.footerLeftButton);
@@ -481,7 +485,7 @@ public class ChooseLockPattern extends Activity implements View.OnClickListener{
     private void saveChosenPatternAndFinish() {
         LockPatternUtils utils = mChooseLockSettingsHelper.utils();
         final boolean lockVirgin = !utils.isPatternEverChosen();
-
+        utils.setLockPatternSize(PATTERN_SIZE);
         utils.saveLockPattern(mChosenPattern);
         utils.setLockPatternEnabled(true);
 
