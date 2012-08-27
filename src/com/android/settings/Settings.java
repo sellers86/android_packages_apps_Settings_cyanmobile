@@ -34,7 +34,7 @@ public class Settings extends PreferenceActivity {
     private static final String KEY_SYNC_SETTINGS = "sync_settings";
     private static final String KEY_DOCK_SETTINGS = "dock_settings";
     private static final String KEY_DEVICE_SETTINGS = "device_settings";
-    
+    private static final String KEY_SYSTEM_UPDATE_SETTINGS = "additional_system_update_settings";
     private static final String KEY_LAUNCHER = "launcher_settings";
 
     private Preference mLauncherSettings;
@@ -56,6 +56,11 @@ public class Settings extends PreferenceActivity {
         Preference dockSettings = parent.findPreference(KEY_DOCK_SETTINGS);
         if (getResources().getBoolean(R.bool.has_dock_settings) == false && dockSettings != null) {
             parent.removePreference(dockSettings);
+        }
+
+        Preference updateSettings = parent.findPreference(KEY_SYSTEM_UPDATE_SETTINGS);
+        if (getResources().getBoolean(R.bool.config_additional_system_update_setting_enable) == false) {
+            parent.removePreference(updateSettings);
         }
     }
 
