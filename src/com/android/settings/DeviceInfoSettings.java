@@ -88,7 +88,7 @@ public class DeviceInfoSettings extends PreferenceActivity {
         findPreference("firmware_version").setEnabled(true);
         setValueSummary("baseband_version", "gsm.version.baseband");
         setStringSummary("device_model", Build.MODEL);
-        setStringSummary("mod_build", "squadzone");
+        setStringSummary("mod_build", SystemProperties.get("ro.build.user", "Squadzone"));
         setStringSummary("build_number", "CyanMobile X");
         findPreference("kernel_version").setSummary(getFormattedKernelVersion());
         setValueSummary("mod_version", "ro.cm.version");
