@@ -79,7 +79,6 @@ public class DeviceInfoSettings extends PreferenceActivity {
         }
 
         setStringSummary("device_cpu", getCPUInfo());
-        // add ro.device.gpu into build.prop to determine what gpu on device
         setStringSummary("device_gpu", SystemProperties.get("ro.device.gpu", "adreno200"));
         setStringSummary("device_screen_resolution", m.heightPixels+" x "+m.widthPixels);
         setStringSummary("device_memory", getMemAvail().toString()+" MB / "+getMemTotal().toString()+" MB");

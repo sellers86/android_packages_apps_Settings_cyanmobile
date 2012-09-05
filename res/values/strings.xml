@@ -498,7 +498,8 @@
     <!-- Title of the Settings activity shown within the application itself. -->
     <string name="settings_label">Settings</string>
     <!-- Title of the Settings activity shown in the Launcher. [CHAR LIMIT=20] -->
-    <string name="settings_label_launcher">Settings</string>
+    <string name="settings_label_launcher">MainSettings</string>
+    <string name="settings_label_title">Settings</string>
     <!-- Label for option to select a settings panel as a shortcut -->
     <string name="settings_shortcut">Settings</string>
     <!-- Wireless controls settings screen, setting check box label -->
@@ -3301,6 +3302,12 @@ when you are connected on trusted networks.\n\nDo you really want to enable this
     <string name="lock_pattern_size_4">4x4</string>
     <string name="lock_pattern_size_5">5x5</string>
     <string name="lock_pattern_size_6">6x6</string>
+
+    <!--- Volume key cursor control -->
+    <string name="volume_key_cursor_control_title">Volume key cursor control</string>
+    <string name="volume_key_cursor_control_off">Disabled</string>
+    <string name="volume_key_cursor_control_on">Volume up/down moves cursor to left/right</string>
+    <string name="volume_key_cursor_control_on_reverse">Volume up/down moves cursor to right/left</string>
 
     <string name="nones"></string>
     <string name="device_cpu">CPU:</string>
