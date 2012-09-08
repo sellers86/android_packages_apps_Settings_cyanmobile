@@ -46,6 +46,7 @@
     <uses-permission android:name="com.android.phone.CHANGE_NETWORK_MODE" />
     <uses-permission android:name="android.permission.MANAGE_USB" />
     <uses-permission android:name="android.permission.REVOKE_PERMISSIONS" />
+	<uses-permission android:name="android.permission.PERSISTENT_ACTIVITY" />
 
     <application android:label="@string/settings_label"
             android:icon="@drawable/ic_launcher_settings" android:theme="@style/CustomTheme"
@@ -67,10 +68,10 @@
         </activity>
 
         <activity android:name="Settings"
-                android:label="@string/settings_label_launcher" >
+                android:label="@string/settings_label_title" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <action android:name="android.settings.SETTINGS" />
+                <action android:name="android.settings.MAIN_SETTINGS" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
@@ -642,6 +643,8 @@
         <activity android:name="ChooseLockPatternExample"
             android:label="@string/lockpattern_change_lock_pattern_label">
         </activity>
+
+        <activity android:name="ChooseLockPatternSize" android:exported="false"/>
 
         <activity android:name="ZoneList" android:label="@string/choose_timezone" />
 
