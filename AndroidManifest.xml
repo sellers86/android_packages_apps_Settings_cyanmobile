@@ -49,7 +49,7 @@
 	<uses-permission android:name="android.permission.PERSISTENT_ACTIVITY" />
 
     <application android:label="@string/settings_label"
-            android:icon="@drawable/ic_launcher_settings" android:theme="@style/CustomTheme"
+            android:icon="@drawable/ic_launcher_settings"
             android:taskAffinity="">
 
         <!-- Settings -->
@@ -57,6 +57,7 @@
         <activity android:name="MainSettings"
                 android:label="@string/settings_label_launcher"
                 android:taskAffinity="com.android.settings"
+                android:theme="@style/CustomTheme"
                 android:clearTaskOnLaunch="true"
                 android:launchMode="singleTop">
             <intent-filter>
