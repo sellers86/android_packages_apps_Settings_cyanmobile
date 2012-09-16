@@ -31,6 +31,7 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.location.LocationManager;
 import android.os.Bundle;
@@ -77,6 +78,7 @@ public class SecuritySettings extends PreferenceActivity implements OnPreference
     private static final String KEY_SHOW_ERROR_PATH = "show_error_path";
     private static final String KEY_TACTILE_FEEDBACK_ENABLED = "unlock_tactile_feedback";
     private static final String KEY_START_DATABASE_ADMINISTRATION = "start_database_administration";
+    private static final String KEY_SMS_SECURITY_CHECK_PREF = "sms_security_check_limit";
 
     // Encrypted File Systems constants
     private static final String PROPERTY_EFS_ENABLED = "persist.security.efs.enabled";
@@ -107,6 +109,7 @@ public class SecuritySettings extends PreferenceActivity implements OnPreference
     private CheckBoxPreference mGps;
     private CheckBoxPreference mAssistedGps;
     private ListPreference mBtPref;
+    private ListPreference mSmsSecurityCheck;
 
     DevicePolicyManager mDPM;
 
@@ -203,11 +206,16 @@ public class SecuritySettings extends PreferenceActivity implements OnPreference
             Settings.System.putInt(getContentResolver(), Settings.System.PATTERN_STYLE_PREF,
                     RinglockStyle.getIdByStyle(patternStyle));
             return true;
+        } else if (preference == mSmsSecurityCheck) {
+            int smsSecurityCheck = Integer.valueOf((String) newValue);
+            Settings.Secure.putInt(getContentResolver(), Settings.Secure.SMS_OUTGOING_CHECK_MAX_COUNT,
+                     smsSecurityCheck);
+            updateSmsSecuritySummary(smsSecurityCheck);
+            return true;
         }
         return false;
     }
 
-    
     private PreferenceScreen createPreferenceHierarchy() {
         PreferenceScreen root = this.getPreferenceScreen();
         if (root != null) {
@@ -314,7 +322,20 @@ public class SecuritySettings extends PreferenceActivity implements OnPreference
         encryptedfsCat.setTitle(R.string.encrypted_fs_category);
         //root.addPreference(encryptedfsCat);
         mCredentialStorage.createPreferences(encryptedfsCat, CredentialStorage.TYPE_ENCRYPTEDFS);
+
+        addPreferencesFromResource(R.xml.security_settings_app);
+        mSmsSecurityCheck = (ListPreference) root.findPreference(KEY_SMS_SECURITY_CHECK_PREF);
+        mSmsSecurityCheck.setOnPreferenceChangeListener(this);
+        if (mSmsSecurityCheck.getValue() != null) {
+            int smsSecurityCheck = Integer.valueOf(mSmsSecurityCheck.getValue());
+            updateSmsSecuritySummary(smsSecurityCheck);
+        }
         return root;
+    }
+
+    private void updateSmsSecuritySummary(int i) {
+        String message = getString(R.string.sms_security_check_limit_summary, i);
+        mSmsSecurityCheck.setSummary(message);
     }
 
     @Override
