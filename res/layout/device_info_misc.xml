@@ -12,7 +12,7 @@
 
     <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         android:shrinkColumns="1"
         android:stretchColumns="1"
@@ -27,7 +27,7 @@
                 android:text="@string/nones"
             />
         </TableRow>
-        <TableRow android:paddingTop = "2dip">
+        <TableRow android:paddingTop = "1dip">
             <TextView
                 style="?android:attr/preferenceInformationStyle"
                 android:text="@string/model_numbers"
@@ -37,7 +37,7 @@
             />
         </TableRow>
 
-        <TableRow android:paddingTop = "2dip">
+        <TableRow android:paddingTop = "1dip">
             <TextView
                 style="?android:attr/preferenceInformationStyle"
                 android:text="@string/firmware_versions"
@@ -47,7 +47,7 @@
             />
         </TableRow>
 
-        <TableRow android:paddingTop = "2dip">
+        <TableRow android:paddingTop = "1dip">
             <TextView
                 style="?android:attr/preferenceInformationStyle"
                 android:text="@string/device_cpu"
@@ -57,7 +57,7 @@
             />
         </TableRow>
 
-        <TableRow android:paddingTop = "2dip">
+        <TableRow android:paddingTop = "1dip">
             <TextView
                 style="?android:attr/preferenceInformationStyle"
                 android:text="@string/kernel_versions"
@@ -67,7 +67,7 @@
             />
         </TableRow>
 
-        <TableRow android:paddingTop = "2dip">
+        <TableRow android:paddingTop = "1dip">
             <TextView
                 style="?android:attr/preferenceInformationStyle"
                 android:text="@string/max_cpus"
@@ -77,7 +77,7 @@
             />
         </TableRow>
 
-        <TableRow android:paddingTop = "2dip">
+        <TableRow android:paddingTop = "1dip">
             <TextView
                 style="?android:attr/preferenceInformationStyle"
                 android:text="@string/device_memory"
@@ -86,7 +86,7 @@
                 style="?android:attr/preferenceInformationStyle"
             />
         </TableRow>
-        <TableRow android:paddingTop = "2dip">
+        <TableRow android:paddingTop = "1dip">
             <TextView
                 style="?android:attr/preferenceInformationStyle"
                 android:text="@string/nones"
