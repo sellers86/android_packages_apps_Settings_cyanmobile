@@ -325,11 +325,11 @@ public class SecuritySettings extends PreferenceActivity implements OnPreference
 
         addPreferencesFromResource(R.xml.security_settings_app);
         mSmsSecurityCheck = (ListPreference) root.findPreference(KEY_SMS_SECURITY_CHECK_PREF);
+        int smsSecurityCheck = Settings.Secure.getInt(getContentResolver(),
+                     Settings.Secure.SMS_OUTGOING_CHECK_MAX_COUNT, 100);
+        mSmsSecurityCheck.setValue(String.valueOf(smsSecurityCheck));
         mSmsSecurityCheck.setOnPreferenceChangeListener(this);
-        if (mSmsSecurityCheck.getValue() != null) {
-            int smsSecurityCheck = Integer.valueOf(mSmsSecurityCheck.getValue());
-            updateSmsSecuritySummary(smsSecurityCheck);
-        }
+        updateSmsSecuritySummary(smsSecurityCheck);
         return root;
     }
 

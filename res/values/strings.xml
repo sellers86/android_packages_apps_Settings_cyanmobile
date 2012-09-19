@@ -3321,7 +3321,7 @@ when you are connected on trusted networks.\n\nDo you really want to enable this
     <!--- Sms security limit -->
     <string name="app_security_title">APP SECURITY</string>
     <string name="sms_security_check_limit_title">SMS security message limit</string>
-    <string name="sms_security_check_limit_summary">Receive an alert when an app sends too many messages (%d messages in 15 min)</string>
+    <string name="sms_security_check_limit_summary">Receive an alert when an app sends too many messages (%d messages in 1 hour)</string>
 
 
 
