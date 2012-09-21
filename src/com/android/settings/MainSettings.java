@@ -109,6 +109,9 @@ public class MainSettings extends TabActivity {
 		intent = new Intent().setClass(MainSettings.this, DevelopmentSettings.class);
 		setupTab(new TextView(this), getString(R.string.development_settings_title), intent);
 
+		intent = new Intent().setClass(MainSettings.this, DevelopmentSettings2.class);
+		setupTab(new TextView(this), getString(R.string.devtools_settings_title), intent);
+
 		intent = new Intent().setClass(MainSettings.this, com.android.settings.fuelgauge.PowerUsageSummary.class);
 		setupTab(new TextView(this), getString(R.string.power_usage_summary_title), intent);
 
