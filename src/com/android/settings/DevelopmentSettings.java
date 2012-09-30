@@ -94,8 +94,7 @@ public class DevelopmentSettings extends PreferenceActivity
         mKillAppLongpressBack = (CheckBoxPreference) findPreference(KILL_APP_LONGPRESS_BACK);
         mRootAccess = (ListPreference) findPreference(ROOT_ACCESS_KEY);
 
-        // user builds don't get root, and eng always gets root
-        if (SystemProperties.getInt("ro.debuggable", 0) == 0 || "eng".equals(Build.TYPE)) {
+        if (SystemProperties.getInt("ro.debuggable", 0) == 0) {
             getPreferenceScreen().removePreference(mRootAccess);
         } else {
             mRootAccess.setOnPreferenceChangeListener(this);

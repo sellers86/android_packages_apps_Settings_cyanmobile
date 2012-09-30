@@ -3329,6 +3329,9 @@ when you are connected on trusted networks.\n\nDo you really want to enable this
     <string name="sms_security_check_limit_title">SMS security message limit</string>
     <string name="sms_security_check_limit_summary">Receive an alert when an app sends too many messages (%d messages in 1 hour)</string>
 
-
+    <!-- Security settings screen, setting option name to change screen timeout -->
+    <string name="lock_after_timeout">Timeout</string>
+    <!-- Security settings screen, setting option summary to change screen timeout -->
+    <string name="lock_after_timeout_summary">Lock screen <xliff:g id="timeout_string">%1$s</xliff:g> after screen automatically turns off</string>
 
 </resources>

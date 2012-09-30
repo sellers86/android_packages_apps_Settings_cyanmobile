@@ -53,7 +53,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.android.internal.widget.LockPatternUtils;
 import android.content.ComponentName;
 
@@ -79,6 +78,8 @@ public class SecuritySettings extends PreferenceActivity implements OnPreference
     private static final String KEY_TACTILE_FEEDBACK_ENABLED = "unlock_tactile_feedback";
     private static final String KEY_START_DATABASE_ADMINISTRATION = "start_database_administration";
     private static final String KEY_SMS_SECURITY_CHECK_PREF = "sms_security_check_limit";
+    private static final String LOCK_AFTER_TIMEOUT_KEY = "lock_after_timeout";
+    private static final int FALLBACK_LOCK_AFTER_TIMEOUT_VALUE = 5000; // compatible with pre-Froyo
 
     // Encrypted File Systems constants
     private static final String PROPERTY_EFS_ENABLED = "persist.security.efs.enabled";
@@ -119,6 +120,8 @@ public class SecuritySettings extends PreferenceActivity implements OnPreference
     private ContentQueryMap mContentQueryMap;
     private ChooseLockSettingsHelper mChooseLockSettingsHelper;
     private LockPatternUtils mLockPatternUtils;
+    private ListPreference mLockAfter;
+
     private final class SettingsObserver implements Observer {
         public void update(Observable o, Object arg) {
             updateToggles();
@@ -212,6 +215,16 @@ public class SecuritySettings extends PreferenceActivity implements OnPreference
                      smsSecurityCheck);
             updateSmsSecuritySummary(smsSecurityCheck);
             return true;
+        } else if (preference == mLockAfter) {
+            int lockAfter = Integer.parseInt((String) newValue);
+            try {
+                Settings.Secure.putInt(getContentResolver(),
+                        Settings.Secure.LOCK_SCREEN_LOCK_AFTER_TIMEOUT, lockAfter);
+            } catch (NumberFormatException e) {
+                Log.e("SecuritySettings", "could not persist lockAfter timeout setting", e);
+            }
+            updateLockAfterPreferenceSummary();
+            return true;
         }
         return false;
     }
@@ -253,8 +266,9 @@ public class SecuritySettings extends PreferenceActivity implements OnPreference
             }
         }
 
-        // set or change current. Should be common to all unlock preference screens
-        // mSetOrChange = (PreferenceScreen) pm.findPreference(KEY_UNLOCK_SET_OR_CHANGE);
+        // lock after preference
+        mLockAfter = setupLockAfterPreference(pm);
+        updateLockAfterPreferenceSummary();
 
         // pattern style pref
         mPatternStylePref = (ListPreference) pm.findPreference(PATTERN_STYLE_PREF);
@@ -338,9 +352,83 @@ public class SecuritySettings extends PreferenceActivity implements OnPreference
         mSmsSecurityCheck.setSummary(message);
     }
 
+    private ListPreference setupLockAfterPreference(PreferenceManager pm) {
+        ListPreference result = (ListPreference) pm.findPreference(LOCK_AFTER_TIMEOUT_KEY);
+        if (result != null) {
+            int lockAfterValue = Settings.Secure.getInt(getContentResolver(), 
+                    Settings.Secure.LOCK_SCREEN_LOCK_AFTER_TIMEOUT, 
+                    FALLBACK_LOCK_AFTER_TIMEOUT_VALUE);
+            result.setValue(String.valueOf(lockAfterValue));
+            result.setOnPreferenceChangeListener(this);
+            final long adminTimeout = mDPM != null ? mDPM.getMaximumTimeToLock(null) : 0;
+            final ContentResolver cr = getContentResolver();
+            final long displayTimeout = Math.max(0, 
+                    Settings.System.getInt(cr, Settings.System.SCREEN_OFF_TIMEOUT, 0));
+            if (adminTimeout > 0) {
+                // This setting is a slave to display timeout when a device policy is enforced.
+                // As such, maxLockTimeout = adminTimeout - displayTimeout.
+                // If there isn't enough time, shows "immediately" setting.
+                disableUnusableTimeouts(result, Math.max(0, adminTimeout - displayTimeout));
+            }
+        }
+        return result;
+    }
+
+    private void updateLockAfterPreferenceSummary() {
+        // Not all security types have a "lock after" preference, so ignore those that don't.
+        if (mLockAfter == null) return;
+
+        // Update summary message with current value
+        long currentTimeout = Settings.Secure.getLong(getContentResolver(),
+                Settings.Secure.LOCK_SCREEN_LOCK_AFTER_TIMEOUT, 0);
+        final CharSequence[] entries = mLockAfter.getEntries();
+        final CharSequence[] values = mLockAfter.getEntryValues();
+        int best = 0;
+        for (int i = 0; i < values.length; i++) {
+            long timeout = Long.valueOf(values[i].toString());
+            if (currentTimeout >= timeout) {
+                best = i;
+            }
+        }
+        String summary = mLockAfter.getContext()
+                .getString(R.string.lock_after_timeout_summary, entries[best]);
+        mLockAfter.setSummary(summary);
+    }
+
+    private static void disableUnusableTimeouts(ListPreference pref, long maxTimeout) {
+        final CharSequence[] entries = pref.getEntries();
+        final CharSequence[] values = pref.getEntryValues();
+        ArrayList<CharSequence> revisedEntries = new ArrayList<CharSequence>();
+        ArrayList<CharSequence> revisedValues = new ArrayList<CharSequence>();
+        for (int i = 0; i < values.length; i++) {
+            long timeout = Long.valueOf(values[i].toString());
+            if (timeout <= maxTimeout) {
+                revisedEntries.add(entries[i]);
+                revisedValues.add(values[i]);
+            }
+        }
+        if (revisedEntries.size() != entries.length || revisedValues.size() != values.length) {
+            pref.setEntries(
+                    revisedEntries.toArray(new CharSequence[revisedEntries.size()]));
+            pref.setEntryValues(
+                    revisedValues.toArray(new CharSequence[revisedValues.size()]));
+            final int userPreference = Integer.valueOf(pref.getValue());
+            if (userPreference <= maxTimeout) {
+                pref.setValue(String.valueOf(userPreference));
+            } else {
+                // There will be no highlighted selection since nothing in the list matches
+                // maxTimeout. The user can still select anything less than maxTimeout.
+                // TODO: maybe append maxTimeout to the list and mark selected.
+            }
+        }
+        pref.setEnabled(revisedEntries.size() > 0);
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
+
+        createPreferenceHierarchy();
 
         final LockPatternUtils lockPatternUtils = mChooseLockSettingsHelper.utils();
         if (mPatternStylePref != null) {

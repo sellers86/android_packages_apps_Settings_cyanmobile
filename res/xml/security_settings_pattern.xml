@@ -26,6 +26,14 @@
             android:summary="@string/unlock_set_unlock_launch_picker_change_summary"
             android:persistent="false"/>
 
+        <ListPreference
+            android:key="lock_after_timeout"
+            android:title="@string/lock_after_timeout"
+            android:summary="@string/lock_after_timeout_summary"
+            android:entries="@array/lock_after_timeout_entries"
+            android:entryValues="@array/lock_after_timeout_values" 
+            android:persistent="false"/>
+
         <ListPreference android:key="pattern_style_pref"
             android:dialogTitle="@string/pref_pattern_style_title"
             android:title="@string/pref_pattern_style_title"
