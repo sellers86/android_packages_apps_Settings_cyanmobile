@@ -3333,5 +3333,5 @@ when you are connected on trusted networks.\n\nDo you really want to enable this
     <string name="lock_after_timeout">Timeout</string>
     <!-- Security settings screen, setting option summary to change screen timeout -->
     <string name="lock_after_timeout_summary">Lock screen <xliff:g id="timeout_string">%1$s</xliff:g> after screen automatically turns off</string>
-
+    <string name="volume_overlay_title">Volume panel style</string>
 </resources>

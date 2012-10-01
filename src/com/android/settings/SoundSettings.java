@@ -35,6 +35,7 @@ import android.provider.Settings;
 import android.provider.Settings.SettingNotFoundException;
 import android.telephony.TelephonyManager;
 import android.util.Log;
+import android.view.VolumePanel;
 import android.view.IWindowManager;
 
 public class SoundSettings extends PreferenceActivity implements
@@ -45,6 +46,7 @@ public class SoundSettings extends PreferenceActivity implements
     private static final int FALLBACK_SCREEN_TIMEOUT_VALUE = 30000;
     private static final int FALLBACK_EMERGENCY_TONE_VALUE = 0;
 
+    private static final String KEY_VOLUME_OVERLAY = "volume_overlay";
     private static final String KEY_SILENT = "silent";
     private static final String KEY_VIBRATE = "vibrate";
     private static final String KEY_DTMF_TONE = "dtmf_tone";
@@ -89,7 +91,7 @@ public class SoundSettings extends PreferenceActivity implements
     private CheckBoxPreference mPowerBatteryFull;
     private CheckBoxPreference mPowerBatteryLow;
     private ListPreference mAnnoyingNotifications;
-
+    private ListPreference mVolumeOverlay;
     private AudioManager mAudioManager;
 
     private BroadcastReceiver mReceiver = new BroadcastReceiver() {
@@ -117,6 +119,14 @@ public class SoundSettings extends PreferenceActivity implements
             // device is not CDMA, do not display CDMA emergency_tone
             getPreferenceScreen().removePreference(findPreference(KEY_EMERGENCY_TONE));
         }
+
+        mVolumeOverlay = (ListPreference) findPreference(KEY_VOLUME_OVERLAY);
+        mVolumeOverlay.setOnPreferenceChangeListener(this);
+        int volumeOverlay = Settings.System.getInt(resolver,
+                Settings.System.MODE_VOLUME_OVERLAY,
+                VolumePanel.VOLUME_OVERLAY_EXPANDABLE);
+        mVolumeOverlay.setValue(Integer.toString(volumeOverlay));
+        mVolumeOverlay.setSummary(mVolumeOverlay.getEntry());
 
         mSilent = (CheckBoxPreference) findPreference(KEY_SILENT);
 
@@ -422,6 +432,13 @@ public class SoundSettings extends PreferenceActivity implements
             int val = Integer.parseInt((String) objValue);
             Settings.System.putInt(getContentResolver(),
                 Settings.System.MUTE_ANNOYING_NOTIFICATIONS_THRESHOLD, val);
+            return true;
+        } else if (preference == mVolumeOverlay) {
+            final int value = Integer.valueOf((String) objValue);
+            final int index = mVolumeOverlay.findIndexOfValue((String) objValue);
+            Settings.System.putInt(getContentResolver(),
+                    Settings.System.MODE_VOLUME_OVERLAY, value);
+            mVolumeOverlay.setSummary(mVolumeOverlay.getEntries()[index]);
             return true;
         }
         return false;
