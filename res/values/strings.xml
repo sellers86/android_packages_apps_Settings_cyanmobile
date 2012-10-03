@@ -2387,8 +2387,8 @@ when you are connected on trusted networks.\n\nDo you really want to enable this
     <!-- Message for the prompt that lets users know that they have no accessibility related apps
          installed and that they can install TalkBack from Play Store. -->
     <string name="accessibility_service_no_apps_message">You do not have any accessibility related
-        applications installed.\n\nYou can download a screen reader for your device from Android
-        Play Store.\n\nClick "OK" to install the screen reader.</string>
+        applications installed.\n\nYou can download a screen reader for your device from Google
+        Play.\n\nClick "OK" to install the screen reader.</string>
 
     <!-- Accessibility settings: Power button category -->
     <string name="accessibility_power_button_category">Power button</string>
