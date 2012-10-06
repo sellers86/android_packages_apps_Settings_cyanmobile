@@ -1082,6 +1082,7 @@
     <string name="sound_settings_title">Sound</string>
     <!-- Main Settings screen setting option name to go into the profile settings screen -->
     <string name="profile_settings_title">Profiles</string>
+    <string name="profilegroup_settings_title">Profiles Group</string>
     <!-- Main Settings screen setting option name to go into the display settings screen -->
     <string name="display_settings_title">Display</string>
     <!-- Sound settings screen heading -->
@@ -3064,12 +3065,14 @@ when you are connected on trusted networks.\n\nDo you really want to enable this
     <string name="toggleFlashlight">Flashlight</string>
     <string name="toggleLockScreen">Lock Screen</string>
     <string name="toggleWimax">WiMAX</string>
+    <string name="togglePowersaver">Power saver</string>
 
     <string name="toggleWifiDescription">Enable/disable Wi-Fi</string>
     <string name="toggleWifiApDescription">Enable/disable the portable Wi-Fi hotspot</string>
     <string name="toggleBluetoothDescription">Enable/disable Bluetooth</string>
     <string name="toggleGPSDescription">Enable/disable GPS</string>
     <string name="toggleDataDescription">Enable/disable mobile data</string>
+    <string name="togglePowersaverDescription">Enable/disable power saver</string>
     <string name="toggleSyncDescription">Enable/disable data sync</string>
     <string name="toggle2g3gDescription">Switch between 2G and 3G</string>
     <string name="toggleSoundDescription">Switch between ring and vibrate only</string>

@@ -75,10 +75,13 @@ public class ProfileConfig extends PreferenceActivity implements OnPreferenceCha
         };
 
         mConnections = new ConnectionItem[] {
+                new ConnectionItem(ConnectionSettings.PROFILE_CONNECTION_MOBILEDATA, getString(R.string.toggleData)),
                 new ConnectionItem(ConnectionSettings.PROFILE_CONNECTION_BLUETOOTH, getString(R.string.toggleBluetooth)),
                 new ConnectionItem(ConnectionSettings.PROFILE_CONNECTION_GPS, getString(R.string.toggleGPS)),
                 new ConnectionItem(ConnectionSettings.PROFILE_CONNECTION_WIFI, getString(R.string.toggleWifi)),
                 new ConnectionItem(ConnectionSettings.PROFILE_CONNECTION_WIFIAP, getString(R.string.toggleWifiAp)),
+                new ConnectionItem(ConnectionSettings.PROFILE_CONNECTION_SYNC, getString(R.string.toggleSync)),
+                new ConnectionItem(ConnectionSettings.PROFILE_CONNECTION_POWERSAVER, getString(R.string.togglePowersaver)),
                 new ConnectionItem(ConnectionSettings.PROFILE_CONNECTION_AIRPLANE, getString(R.string.toggleAirplane))
         };
 

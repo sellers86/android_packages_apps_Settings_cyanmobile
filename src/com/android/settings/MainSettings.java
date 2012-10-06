@@ -64,47 +64,26 @@ public class MainSettings extends TabActivity {
 		intent = new Intent().setClass(MainSettings.this, Settings.class);
 		setupTab(new TextView(this), getString(R.string.variouse_settings_title), intent);
 
-		intent = new Intent().setClass(MainSettings.this, com.android.settings.wifi.WifiSettings.class);
-		setupTab(new TextView(this), getString(R.string.wifi_settings_category), intent);
-
 		intent = new Intent().setClass(MainSettings.this, WirelessSettings.class);
 		setupTab(new TextView(this), getString(R.string.settings_radio_more), intent);
+
+		intent = new Intent().setClass(MainSettings.this, com.android.settings.wifi.WifiSettings.class);
+		setupTab(new TextView(this), getString(R.string.wifi_settings_category), intent);
 
 		intent = new Intent().setClass(MainSettings.this, TetherSettings.class);
 		setupTab(new TextView(this), getString(R.string.tether_settings_title_all), intent);
 
+		intent = new Intent().setClass(MainSettings.this, AccessibilitySettings.class);
+		setupTab(new TextView(this), getString(R.string.accessibility_settings), intent);
+
 		intent = new Intent().setClass(MainSettings.this, ApplicationSettings.class);
 		setupTab(new TextView(this), getString(R.string.applications_settings), intent);
 
-		intent = new Intent().setClass(MainSettings.this, SoundSettings.class);
-		setupTab(new TextView(this), getString(R.string.sound_settings_title), intent);
-
-		intent = new Intent().setClass(MainSettings.this, DisplaySettings.class);
-		setupTab(new TextView(this), getString(R.string.display_settings_title), intent);
-
-		intent = new Intent().setClass(MainSettings.this, com.android.settings.deviceinfo.Memory.class);
-		setupTab(new TextView(this), getString(R.string.storage_settings_title), intent);
-
-		intent = new Intent().setClass(MainSettings.this, ExtendedDeviceInfo.class);
-		setupTab(new TextView(this), getString(R.string.extended_info_title), intent);
-
-		intent = new Intent().setClass(MainSettings.this, ProfileList.class);
-		setupTab(new TextView(this), getString(R.string.profile_settings_title), intent);
-
-		intent = new Intent().setClass(MainSettings.this, PrivacySettings.class);
-		setupTab(new TextView(this), getString(R.string.privacy_settings_title), intent);
+		intent = new Intent().setClass(MainSettings.this, com.android.settings.fuelgauge.PowerUsageSummary.class);
+		setupTab(new TextView(this), getString(R.string.power_usage_summary_title), intent);
 
 		intent = new Intent().setClass(MainSettings.this, DateTimeSettings.class);
 		setupTab(new TextView(this), getString(R.string.date_and_time_settings_title), intent);
-
-		intent = new Intent().setClass(MainSettings.this, LanguageSettings.class);
-		setupTab(new TextView(this), getString(R.string.language_settings), intent);
-
-		intent = new Intent().setClass(MainSettings.this, VoiceInputOutputSettings.class);
-		setupTab(new TextView(this), getString(R.string.voice_input_output_settings), intent);
-
-		intent = new Intent().setClass(MainSettings.this, AccessibilitySettings.class);
-		setupTab(new TextView(this), getString(R.string.accessibility_settings), intent);
 
 		intent = new Intent().setClass(MainSettings.this, DevelopmentSettings.class);
 		setupTab(new TextView(this), getString(R.string.development_settings_title), intent);
@@ -112,8 +91,32 @@ public class MainSettings extends TabActivity {
 		intent = new Intent().setClass(MainSettings.this, DevelopmentSettings2.class);
 		setupTab(new TextView(this), getString(R.string.devtools_settings_title), intent);
 
-		intent = new Intent().setClass(MainSettings.this, com.android.settings.fuelgauge.PowerUsageSummary.class);
-		setupTab(new TextView(this), getString(R.string.power_usage_summary_title), intent);
+		intent = new Intent().setClass(MainSettings.this, DisplaySettings.class);
+		setupTab(new TextView(this), getString(R.string.display_settings_title), intent);
+
+		intent = new Intent().setClass(MainSettings.this, LanguageSettings.class);
+		setupTab(new TextView(this), getString(R.string.language_settings), intent);
+
+		intent = new Intent().setClass(MainSettings.this, ProfileList.class);
+		setupTab(new TextView(this), getString(R.string.profile_settings_title), intent);
+
+		intent = new Intent().setClass(MainSettings.this, ProfileGroupConfig.class);
+		setupTab(new TextView(this), getString(R.string.profilegroup_settings_title), intent);
+
+		intent = new Intent().setClass(MainSettings.this, PrivacySettings.class);
+		setupTab(new TextView(this), getString(R.string.privacy_settings_title), intent);
+
+		intent = new Intent().setClass(MainSettings.this, SoundSettings.class);
+		setupTab(new TextView(this), getString(R.string.sound_settings_title), intent);
+
+		intent = new Intent().setClass(MainSettings.this, com.android.settings.deviceinfo.Memory.class);
+		setupTab(new TextView(this), getString(R.string.storage_settings_title), intent);
+
+		intent = new Intent().setClass(MainSettings.this, ExtendedDeviceInfo.class);
+		setupTab(new TextView(this), getString(R.string.extended_info_title), intent);
+
+		intent = new Intent().setClass(MainSettings.this, VoiceInputOutputSettings.class);
+		setupTab(new TextView(this), getString(R.string.voice_input_output_settings), intent);
 
 		intent = new Intent().setClass(MainSettings.this, DeviceInfoSettings.class);
 		setupTab(new TextView(this), getString(R.string.about_settings), intent);
