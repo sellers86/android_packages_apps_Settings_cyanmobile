@@ -100,8 +100,8 @@ public class MainSettings extends TabActivity {
 		intent = new Intent().setClass(MainSettings.this, ProfileList.class);
 		setupTab(new TextView(this), getString(R.string.profile_settings_title), intent);
 
-		intent = new Intent().setClass(MainSettings.this, ProfileGroupConfig.class);
-		setupTab(new TextView(this), getString(R.string.profilegroup_settings_title), intent);
+		//intent = new Intent().setClass(MainSettings.this, ProfileGroupConfig.class);
+		//setupTab(new TextView(this), getString(R.string.profilegroup_settings_title), intent);
 
 		intent = new Intent().setClass(MainSettings.this, PrivacySettings.class);
 		setupTab(new TextView(this), getString(R.string.privacy_settings_title), intent);
