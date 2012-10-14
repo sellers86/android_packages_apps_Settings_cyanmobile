@@ -56,10 +56,10 @@
         android:title="@string/mount_sd_ext"
         android:summary="@string/mount_sd_ext_summary" />
 
-    <CheckBoxPreference
+    <!-- <CheckBoxPreference
         android:key="data_bind_mount"
         android:title="@string/data_bind_mount"
-        android:summary="@string/data_bind_mount_summary" />
+        android:summary="@string/data_bind_mount_summary" /> -->
 
     <CheckBoxPreference
         android:key="down_cache_mount"

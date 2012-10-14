@@ -53,7 +53,7 @@ public class DevelopmentSettings extends PreferenceActivity
     private static final String ROOT_ACCESS_KEY = "root_access";
     private static final String ROOT_ACCESS_PROPERTY = "persist.sys.root_access";
     private static final String MOUNT_SD_EXT="mount_sd_ext";
-    private static final String DATA_BIND_MOUNT="data_bind_mount";
+    //private static final String DATA_BIND_MOUNT="data_bind_mount";
     private static final String DOWN_CACHE_MOUNT="down_cache_mount";
 
     private static final String KILLTIMEOUT_PREF = "pref_killtimeout";
@@ -69,7 +69,7 @@ public class DevelopmentSettings extends PreferenceActivity
     private ListPreference mRootAccess;
     private ListPreference mKillTimeOutPref;
     private CheckBoxPreference mMountSDExt;
-    private CheckBoxPreference mDataBindMount;
+    //private CheckBoxPreference mDataBindMount;
     private CheckBoxPreference mDownCacheMount;
 
     private String mCurrentDialog;
@@ -101,7 +101,7 @@ public class DevelopmentSettings extends PreferenceActivity
         }
 
         mMountSDExt = (CheckBoxPreference) findPreference(MOUNT_SD_EXT);
-        mDataBindMount = (CheckBoxPreference) findPreference(DATA_BIND_MOUNT);
+        //mDataBindMount = (CheckBoxPreference) findPreference(DATA_BIND_MOUNT);
         mDownCacheMount = (CheckBoxPreference) findPreference(DOWN_CACHE_MOUNT);
 
         mKillTimeOutPref = (ListPreference) findPreference(KILLTIMEOUT_PREF);
@@ -136,8 +136,8 @@ public class DevelopmentSettings extends PreferenceActivity
                 Settings.Secure.KILL_APP_LONGPRESS_BACK, 0) != 0));
         mKillTimeOutPref.setValue(SystemProperties.get(KILLTIMEOUT_PERSIST_PROP, KILLTIMEOUT_DEFAULT));
         mMountSDExt.setChecked(SystemProperties.get("persist.sys.magpie.allow","0").equals("1"));
-        mDataBindMount.setEnabled(SystemProperties.get("persist.sys.magpie.allow","0").equals("1"));
-        mDataBindMount.setChecked(SystemProperties.get("persist.sys.magpie.data2sd","0").equals("1"));
+        //mDataBindMount.setEnabled(SystemProperties.get("persist.sys.magpie.allow","0").equals("1"));
+        //mDataBindMount.setChecked(SystemProperties.get("persist.sys.magpie.data2sd","0").equals("1"));
         mDownCacheMount.setEnabled(SystemProperties.get("persist.sys.magpie.allow","0").equals("1"));
         mDownCacheMount.setChecked(SystemProperties.get("persist.sys.dcache.allow","0").equals("1"));
 
@@ -215,10 +215,10 @@ public class DevelopmentSettings extends PreferenceActivity
                     mAllowMockLocation.isChecked() ? 1 : 0);
         } else if (preference == mMountSDExt) {
             SystemProperties.set("persist.sys.magpie.allow",mMountSDExt.isChecked() ? "1" : "0");
-            mDataBindMount.setEnabled(SystemProperties.get("persist.sys.magpie.allow","0").equals("1"));
+            //mDataBindMount.setEnabled(SystemProperties.get("persist.sys.magpie.allow","0").equals("1"));
             mDownCacheMount.setEnabled(SystemProperties.get("persist.sys.magpie.allow","0").equals("1"));
-        } else if (preference == mDataBindMount) {
-            SystemProperties.set("persist.sys.magpie.data2sd",mDataBindMount.isChecked() ? "1" : "0");
+        //} else if (preference == mDataBindMount) {
+        //    SystemProperties.set("persist.sys.magpie.data2sd",mDataBindMount.isChecked() ? "1" : "0");
         } else if (preference == mDownCacheMount) {
             SystemProperties.set("persist.sys.dcache.allow",mDownCacheMount.isChecked() ? "1" : "0");
         } else if (preference == mKillAppLongpressBack) {
