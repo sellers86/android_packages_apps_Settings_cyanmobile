@@ -20,6 +20,6 @@
     <dimen name="vpn_connect_input_box_label_width">90sp</dimen>
     <dimen name="color_picker_center">90dip</dimen>
     <dimen name="color_picker_radius">30dip</dimen>
-    <dimen name="actionbar_height">45dip</dimen>
+    <dimen name="actionbar_height">24dip</dimen>
     <dimen name="padding_small">10dip</dimen>
 </resources>
