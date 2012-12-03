@@ -20,5 +20,5 @@
 
     <!-- If false, MIN is displayed. If true, MSID is displayed. -->
     <bool name="config_msid_enable" translatable="false">false</bool>
-
+    <integer name="fling_animation_duration">350</integer>
 </resources>
