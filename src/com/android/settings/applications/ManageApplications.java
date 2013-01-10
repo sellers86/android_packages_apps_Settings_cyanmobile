@@ -552,6 +552,7 @@ public class ManageApplications extends TabActivity implements
         lv.setItemsCanFocus(true);
         lv.setOnItemClickListener(this);
         lv.setTextFilterEnabled(true);
+        lv.setFastScrollEnabled(true);
         mListView = lv;
         lv.setRecyclerListener(mApplicationsAdapter);
         mListView.setAdapter(mApplicationsAdapter);
