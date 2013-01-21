@@ -76,6 +76,9 @@ public class MainSettings extends TabActivity {
 		intent = new Intent().setClass(MainSettings.this, TetherSettings.class);
 		setupTab(new TextView(this), getString(R.string.tether_settings_title_all), intent);
 
+		intent = new Intent().setClass(MainSettings.this, DataTrafficActivity.class);
+		setupTab(new TextView(this), getString(R.string.title_activity_datamain), intent);
+
 		intent = new Intent().setClass(MainSettings.this, AccessibilitySettings.class);
 		setupTab(new TextView(this), getString(R.string.accessibility_settings), intent);
 

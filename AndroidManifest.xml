@@ -64,7 +64,9 @@
 
     <application android:label="@string/settings_label"
             android:icon="@drawable/ic_launcher_settings"
-            android:taskAffinity="">
+            android:taskAffinity=""
+            android:backupAgent="SettingsBackupAgent"
+            android:killAfterRestore="false">
 
         <!-- Settings -->
 
@@ -112,7 +114,6 @@
             </intent-filter>
         </activity>
 
-
         <!-- Top-level settings -->
 
         <activity android:name=".wifi.WifiSettings"
@@ -127,6 +128,15 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.VOICE_LAUNCH" />
                 <category android:name="com.android.settings.SHORTCUT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="DataTrafficActivity"
+            android:label="@string/title_activity_datamain" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
 
